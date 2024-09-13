@@ -5,7 +5,7 @@ import utils.Utils;
 
 public class UIController {
 
-    private final InputModel input = new InputModel();
+    private final InputBuffer input = new InputBuffer();
     private final Router router = new Router(input);
 
     static {
@@ -21,8 +21,9 @@ public class UIController {
         cycle();
         while (true) {
             if (kbHit()) {
-                input.addBuffer(input.get());
-                input.set(getChar());
+                char c = getChar();
+                input.addBuffer(c);
+                input.set(c);
                 cycle();
             }
         }

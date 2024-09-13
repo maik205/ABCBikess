@@ -18,12 +18,12 @@ public class Product implements Queriable {
     private short modelYear;
     private long listPrice;
 
-    public Product(String id, String name, String brandId, String categoryId, short modelYear, long listPrice) {
+    public Product(String id, String name, String brandId, String categoryId, int modelYear, long listPrice) {
         this.id = id;
         this.name = name;
         this.brandId = brandId;
         this.categoryId = categoryId;
-        this.modelYear = modelYear;
+        this.modelYear = (short) modelYear;
         this.listPrice = listPrice;
     }
 

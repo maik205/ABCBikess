@@ -12,16 +12,5 @@ public class CollectionView<T> {
     public CollectionView() {
     }
 
-    /**
-     * @param collection The collection to be converted into the view.
-     * @return
-     */
-    public String viewCollection(UniqueMap<T> collection) {
-        StringBuilder sb = new StringBuilder();
-        collection.getCollectionSet().forEach((item) -> {
-            //TODO
-        });
 
-        return sb.toString();
-    }
 }

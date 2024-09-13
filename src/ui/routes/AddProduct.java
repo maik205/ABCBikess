@@ -1,7 +1,6 @@
 package ui.routes;
 
 import abcbikes.models.Product;
-import abcbikes.models.UniqueMap;
 import ui.Router;
 import ui.base.Form;
 import ui.base.FormField;
@@ -11,12 +10,7 @@ public class AddProduct extends Form<Product> {
 
     public AddProduct(Router router) {
 
-        super(StringConstants.ROUTE_DESCRIPTOR.get((short) 1), router);
-    }
-
-    @Override
-    public void update(Character value) {
-
+        super(StringConstants.ROUTE_DESCRIPTOR.get((short) 1), router, null);
     }
 
     @Override
@@ -27,9 +21,9 @@ public class AddProduct extends Form<Product> {
     @Override
     public void initializeForm() {
         this.fields.add(new FormField("Name", ""));
-        this.fields.add(new FormField("Name", ""));
-        this.fields.add(new FormField("Name", ""));
-        this.fields.add(new FormField("Name", ""));
+        this.fields.add(new FormField("Brand ID", ""));
+        this.fields.add(new FormField("Category ID", ""));
+        this.fields.add(new FormField("Model Year", ""));
     }
 
     @Override

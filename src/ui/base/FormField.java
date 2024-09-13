@@ -39,16 +39,17 @@ public class FormField {
     public String toString() {
         try {
             StringBuilder result = new StringBuilder();
-            String labelColor = isEditing ? "black" : "white";
-            String labelBackground = isEditing ? "yellow" : "blue";
-            String valueColor = isSelecting ? "black" : "white";
-            String valueBackground = isSelecting ? "yellow" : "blue";
+            String labelColor = isSelecting ? "black" : "white";
+            String labelBackground = isSelecting ? (isEditing ? "yellow" : "white") : "black";
+            String valueColor = isEditing ? "black" : "white";
+            String valueBackground = isEditing ? "white" : "black";
             result.append(Colorizer.colorize(this.label, labelColor, labelBackground));
             result.append(Utils.getLabelPadding(label));
-            result.append(Colorizer.colorize(this.value, valueColor, valueBackground));
+            result.append(
+                    Colorizer.colorize(this.value.length() == 0 ? "<Empty>" : this.value, valueColor, valueBackground));
             return result.toString();
         } catch (InvalidColorException e) {
-            return "An error occurred";
+            return "Bro you messed up the colors";
         }
     }
 

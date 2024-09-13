@@ -27,12 +27,14 @@ public class MainMenu extends Route {
                 selectedOption = 0;
             }
         }
-
+        
         // Handle enter action
-        if (value.equals('\n')) {
+
+        if (((int) value) == 13) {
+            System.out.println("Selected option: " + selectedOption);
             switch (selectedOption) {
                 case 0:
-                    router.navigate(null);
+                    router.navigate(new AddProduct(router));
                     System.out.println("Add a product");
                     break;
                 case 1:

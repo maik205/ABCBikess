@@ -3,6 +3,7 @@ package ui.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import ui.InputBuffer;
 import ui.Router;
 import ui.routes.Route;
 import utils.RouteDescriptor;
@@ -10,7 +11,7 @@ import utils.RouteDescriptor;
 public abstract class Form<T> extends Route {
     protected final List<FormField> fields = new ArrayList<>();
     private boolean isEditing = false;
-    private int currentSelectedField = 0;
+    private int currentSelectedFieldIndex = 0;
 
     public Form(RouteDescriptor routeDescriptor, Router router, Route prevRoute) {
         super(routeDescriptor, router);
@@ -19,23 +20,27 @@ public abstract class Form<T> extends Route {
 
     @Override
     public void update(Character keyDown) {
-        if (isEditing == true) {
-            router.getInput().addBuffer(keyDown);
-
-        } else {
+        int keyDownInt = (int) keyDown;
+        InputBuffer input = router.getInput();
+        if (keyDownInt == 13) {
+            isEditing = !isEditing;
+            if (isEditing == true)
+                input.setBuffer(fields.get(currentSelectedFieldIndex).getValue());
+        }
+        if (isEditing == false) {
             if (Character.toLowerCase(keyDown) == 'w') {
-                currentSelectedField--;
-                if (currentSelectedField == -1) {
-                    currentSelectedField = fields.size() - 1;
+                currentSelectedFieldIndex--;
+                if (currentSelectedFieldIndex == -1) {
+                    currentSelectedFieldIndex = fields.size() - 1;
                 }
             } else if (Character.toLowerCase(keyDown) == 's') {
-                currentSelectedField++;
-                if (currentSelectedField == fields.size()) {
-                    currentSelectedField = 0;
+                currentSelectedFieldIndex++;
+                if (currentSelectedFieldIndex == fields.size()) {
+                    currentSelectedFieldIndex = 0;
                 }
-            } else if (Character.toLowerCase(keyDown) == '\n') {
-                isEditing = true;
             }
+        } else {
+            fields.get(currentSelectedFieldIndex).setValue(input.getBuffer());
         }
     }
 
@@ -47,8 +52,8 @@ public abstract class Form<T> extends Route {
     public String renderForm() {
         StringBuilder sb = new StringBuilder();
         fields.forEach(field -> {
-            field.setEditing(isEditing);
-            field.setSelecting(fields.indexOf(field) == currentSelectedField);
+            field.setEditing(isEditing && fields.indexOf(field) == currentSelectedFieldIndex);
+            field.setSelecting(fields.indexOf(field) == currentSelectedFieldIndex);
             sb.append(field.toString()).append('\n');
         });
         return sb.toString();
