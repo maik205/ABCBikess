@@ -1,6 +1,6 @@
 package abcbikes.views;
 
-import abcbikes.models.UniqueCollection;
+import abcbikes.models.UniqueMap;
 
 public class CollectionView<T> {
     String[] headers;
@@ -16,10 +16,10 @@ public class CollectionView<T> {
      * @param collection The collection to be converted into the view.
      * @return
      */
-    public String viewCollection(UniqueCollection<T> collection) {
+    public String viewCollection(UniqueMap<T> collection) {
         StringBuilder sb = new StringBuilder();
         collection.getCollectionSet().forEach((item) -> {
-            item.getClass().getFields()
+            //TODO
         });
 
         return sb.toString();

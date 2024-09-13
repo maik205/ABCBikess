@@ -5,6 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>ABCBikes</name>
             <source-roots>
+                <root id="src.libs.dir" name="Libraries"/>
                 <root id="src.dir"/>
             </source-roots>
             <test-roots>
