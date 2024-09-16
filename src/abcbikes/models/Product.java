@@ -10,8 +10,8 @@ import abcbikes.interfaces.Queriable;
 /**
  * @author ASUS
  */
-public class Product implements Queriable {
-    private String id;
+public class Product implements Queriable{
+    private String productId;
     private String name;
     private String brandId;
     private String categoryId;
@@ -19,7 +19,7 @@ public class Product implements Queriable {
     private long listPrice;
 
     public Product(String id, String name, String brandId, String categoryId, int modelYear, long listPrice) {
-        this.id = id;
+        this.productId = id;
         this.name = name;
         this.brandId = brandId;
         this.categoryId = categoryId;
@@ -27,12 +27,12 @@ public class Product implements Queriable {
         this.listPrice = listPrice;
     }
 
-    public String getId() {
-        return id;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setProductId(String id) {
+        this.productId = id;
     }
 
     public String getName() {
@@ -83,7 +83,7 @@ public class Product implements Queriable {
     @Override
     public String getQueryString() {
         return "Product{" +
-                "id='" + id + '\'' +
+                "id='" + productId + '\'' +
                 ", name='" + name + '\'' +
                 ", brandId='" + brandId + '\'' +
                 ", categoryId='" + categoryId + '\'' +
@@ -91,4 +91,12 @@ public class Product implements Queriable {
                 ", listPrice=" + listPrice +
                 '}';
     }
+
+    @Override
+    public String getId() {
+        return this.productId;
+    }
+
+
+
 }

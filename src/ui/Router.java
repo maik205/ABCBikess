@@ -20,6 +20,7 @@ public class Router {
         }
         return result.toString();
     }
+
     public InputBuffer getInput() {
         return input;
     }

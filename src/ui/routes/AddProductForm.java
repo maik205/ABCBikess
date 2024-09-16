@@ -6,9 +6,9 @@ import ui.base.Form;
 import ui.base.FormField;
 import utils.constants.StringConstants;
 
-public class AddProduct extends Form<Product> {
+public class AddProductForm extends Form<Product> {
 
-    public AddProduct(Router router) {
+    public AddProductForm(Router router) {
 
         super(StringConstants.ROUTE_DESCRIPTOR.get((short) 1), router, null);
     }

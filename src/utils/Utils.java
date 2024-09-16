@@ -1,5 +1,8 @@
 package utils;
 
+import ui.utilities.Logger;
+import utils.constants.StringConstants;
+
 public class Utils {
     public static void clearConsole() {
         try {
@@ -16,16 +19,22 @@ public class Utils {
                 startProcess.waitFor();
             }
         } catch (Exception e) {
-            System.out.println(e);
+            Logger.log(e.getMessage());
+            Logger.log("Error clearing the console.");
         }
     }
 
     public static String getLabelPadding(String label) {
-        String padding = "";
-        for (int i = 0; i < 20 - label.length(); i++) {
-            padding += " ";
+        return getLabelPadding(label, StringConstants.FORM_FIELD_PADDING);
+    }
+
+    public static String getLabelPadding(String label, int padding) {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < padding - label.length(); i++) {
+            res.append(" ");
         }
-        return padding;
+        return res.toString();
 
     }
+
 }

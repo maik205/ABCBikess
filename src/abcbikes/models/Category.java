@@ -10,7 +10,7 @@ import abcbikes.interfaces.Queriable;
 /**
  * @author ASUS
  */
-public class Category implements Queriable {
+public class Category implements Queriable{
 
     private String categoryId;
     private String categoryName;
@@ -48,4 +48,14 @@ public class Category implements Queriable {
     public String toString() {
         return "";
     }
+
+    @Override
+    public String getId() {
+        return this.categoryId;
+    }
+
+
+
+
+
 }

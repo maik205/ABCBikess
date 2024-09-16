@@ -9,8 +9,11 @@ package abcbikes.exceptions;
  *
  * @author ASUS
  */
-public class ItemExistsException extends Exception{
-    public ItemExistsException(String message) {
+public class DuplicateItemException extends InvalidItemException {
+    public DuplicateItemException(String message) {
         super(message);
+    }
+
+    public DuplicateItemException() {
     }
 }

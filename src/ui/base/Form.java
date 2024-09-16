@@ -12,7 +12,7 @@ public abstract class Form<T> extends Route {
     protected final List<FormField> fields = new ArrayList<>();
     private boolean isEditing = false;
     private int currentSelectedFieldIndex = 0;
-
+    
     public Form(RouteDescriptor routeDescriptor, Router router, Route prevRoute) {
         super(routeDescriptor, router);
         initializeForm();
@@ -23,15 +23,17 @@ public abstract class Form<T> extends Route {
         int keyDownInt = (int) keyDown;
         InputBuffer input = router.getInput();
         if (keyDownInt == 13) {
+            
             isEditing = !isEditing;
             if (isEditing == true)
                 input.setBuffer(fields.get(currentSelectedFieldIndex).getValue());
+            
         }
         if (isEditing == false) {
             if (Character.toLowerCase(keyDown) == 'w') {
                 currentSelectedFieldIndex--;
                 if (currentSelectedFieldIndex == -1) {
-                    currentSelectedFieldIndex = fields.size() - 1;
+                    currentSelectedFieldIndex = fields.size() + 1;
                 }
             } else if (Character.toLowerCase(keyDown) == 's') {
                 currentSelectedFieldIndex++;
@@ -55,6 +57,7 @@ public abstract class Form<T> extends Route {
             field.setEditing(isEditing && fields.indexOf(field) == currentSelectedFieldIndex);
             field.setSelecting(fields.indexOf(field) == currentSelectedFieldIndex);
             sb.append(field.toString()).append('\n');
+            
         });
         return sb.toString();
     }
@@ -70,4 +73,6 @@ public abstract class Form<T> extends Route {
      * @return the data from the form
      */
     public abstract T submitForm();
+
+    public abstract void cancelForm();
 }

@@ -20,6 +20,15 @@ public class Brand implements Queriable {
         return brandId;
     }
 
+    public Brand(String brandId, String brandName, String country) {
+        this.brandId = brandId;
+        this.brandName = brandName;
+        this.country = country;
+    }
+
+    public Brand() {
+    }
+
     public void setBrandId(String brandId) {
         this.brandId = brandId;
     }
@@ -40,12 +49,6 @@ public class Brand implements Queriable {
         this.country = country;
     }
 
-    public Brand(String brandId, String brandName, String country) {
-        this.brandId = brandId;
-        this.brandName = brandName;
-        this.country = country;
-    }
-
     @Override
     public String toString() {
         return "";
@@ -59,4 +62,10 @@ public class Brand implements Queriable {
                 ", country='" + country + '\'' +
                 '}';
     }
+
+    @Override
+    public String getId() {
+        return this.brandId;
+    }
+
 }

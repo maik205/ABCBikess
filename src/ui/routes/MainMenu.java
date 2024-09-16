@@ -34,7 +34,7 @@ public class MainMenu extends Route {
             System.out.println("Selected option: " + selectedOption);
             switch (selectedOption) {
                 case 0:
-                    router.navigate(new AddProduct(router));
+                    router.navigate(new AddProductForm(router));
                     System.out.println("Add a product");
                     break;
                 case 1:

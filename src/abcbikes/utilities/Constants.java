@@ -9,6 +9,12 @@ package abcbikes.utilities;
  *
  * @author ASUS
  */
-public class Constants {
+public final class Constants {
     public static final String GREET_MSG = "";
+    public static final String COMPANY_NAME = "ABCBikes";
+    public static final String BRAND_FILE_NAME = "Brand.txt";
+    public static final String PRODUCT_FILE_NAME = "Product.txt";
+    public static final String CATEGORY_FILE_NAME = "Category.txt";
+    public static final String SPLIT_TOKEN = ",";
+
 }

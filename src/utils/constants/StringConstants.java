@@ -5,7 +5,8 @@ import utils.RouteDescriptor;
 
 public final class StringConstants {
     public final static Map<Short, String> MAIN_MENU = new HashMap<>();
-
+    public final static int FORM_FIELD_PADDING = 15;
+    public final static int FORM_FIELD_MAX_LENGTH = 40;
     public final static Map<Short, RouteDescriptor> ROUTE_DESCRIPTOR = new HashMap<>();
     static {
         MAIN_MENU.put((short) 0, "Add a product");
@@ -16,7 +17,7 @@ public final class StringConstants {
         MAIN_MENU.put((short) 5, "Load product list from file");
 
         ROUTE_DESCRIPTOR.put((short) 0, new RouteDescriptor("Main Menu", "Press W or S to navigate the options and Enter to select an option"));
-        ROUTE_DESCRIPTOR.put((short) 1, new RouteDescriptor("Add a product", "Add a product to the product list"));
+        ROUTE_DESCRIPTOR.put((short) 1, new RouteDescriptor("Add a product", ""));
         ROUTE_DESCRIPTOR.put((short) 2, new RouteDescriptor("Search a product by name", "Search a product by name"));
         ROUTE_DESCRIPTOR.put((short) 3, new RouteDescriptor("Update a product", "Update a product in the product list"));
         ROUTE_DESCRIPTOR.put((short) 4, new RouteDescriptor("Delete a product", "Delete a product from the product list"));
