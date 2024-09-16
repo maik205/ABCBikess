@@ -27,7 +27,7 @@ public class MainMenu extends Route {
                 selectedOption = 0;
             }
         }
-        
+
         // Handle enter action
 
         if (((int) value) == 13) {
@@ -35,10 +35,9 @@ public class MainMenu extends Route {
             switch (selectedOption) {
                 case 0:
                     router.navigate(new AddProductForm(router));
-                    System.out.println("Add a product");
                     break;
                 case 1:
-                    System.out.println("Search a product by name");
+                    router.navigate(new Search(router, this));
                     break;
                 case 2:
                     System.out.println("Update a product");

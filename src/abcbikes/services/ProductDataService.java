@@ -14,7 +14,7 @@ public class ProductDataService extends DataService<Product> {
     private final CategoryDataService categoryDataService;
 
     public ProductDataService(Collection<Product> data, BrandDataService brandDataService,
-            CategoryDataService categoryDataService) {
+            CategoryDataService categoryDataService) throws InvalidItemException {
         super(data);
         this.brandDataService = brandDataService;
         this.categoryDataService = categoryDataService;
@@ -47,7 +47,7 @@ public class ProductDataService extends DataService<Product> {
             return new Product(objStrings[0], objStrings[1], objStrings[2], objStrings[3],
                     Integer.parseInt(objStrings[4]), Long.parseLong(objStrings[5]));
         } catch (NumberFormatException e) {
-            throw new InvalidItemException("Invalid fields");
+            throw new InvalidItemException("Invalid numeric fields." + String.join("x", objStrings));
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidFormatException("Invalid input");
         }

@@ -7,13 +7,13 @@ public class FieldLengthValidator extends FieldValidator {
     private int minLength;
     private int maxLength;
 
-    FieldLengthValidator(FormField field, int minLength, int maxLength) {
+    public FieldLengthValidator(FormField field, int minLength, int maxLength) {
         super(field);
         this.minLength = minLength;
 
     }
 
-    FieldLengthValidator(FormField field, int minLength) {
+    public FieldLengthValidator(FormField field, int minLength) {
         super(field);
 
         this.minLength = minLength;
@@ -21,6 +21,7 @@ public class FieldLengthValidator extends FieldValidator {
 
     @Override
     public boolean validatorFunction() {
+        if (field.getValue().isEmpty()) return true;
         if (maxLength == 0) {
             return field.getValue().length() >= minLength;
         }

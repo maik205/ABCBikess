@@ -4,6 +4,7 @@ import abcbikes.exceptions.InvalidFormatException;
 import abcbikes.exceptions.InvalidItemException;
 import abcbikes.exceptions.InvalidLinkException;
 import abcbikes.exceptions.DuplicateItemException;
+
 import abcbikes.interfaces.Queriable;
 
 import abcbikes.utilities.FSUtils;
@@ -19,14 +20,10 @@ public abstract class DataService<T extends Queriable> extends HashMap<String, T
 
     protected abstract int getNumFields();
 
-    DataService(Collection<T> data) {
-        data.forEach(item -> {
-            try {
-                addItem(item);
-            } catch (InvalidItemException e) {
-                System.out.println(e.getMessage());
-            }
-        });
+    DataService(Collection<T> data) throws InvalidItemException {
+        for (T item : data) {
+            addItem(item);
+        }
 
     }
 
@@ -44,13 +41,13 @@ public abstract class DataService<T extends Queriable> extends HashMap<String, T
     public HashMap<String, T> queryMap(String str) {
         HashMap<String, T> workingMap = new HashMap<>();
         this.forEach((key, value) -> {
-            if (value.getQueryString().contains(str))
+            if (value.getQueryString().toLowerCase().contains(str.toLowerCase()))
                 workingMap.put(key, value);
         });
         return workingMap;
     }
 
-    protected String[][] getItemStrings(String path, int noFields) throws InvalidFormatException, IOException {
+    private String[][] getItemStrings(String path, int noFields) throws InvalidFormatException, IOException {
         return FSUtils.splitFields(FSUtils.readTextFile(path), noFields);
     }
 

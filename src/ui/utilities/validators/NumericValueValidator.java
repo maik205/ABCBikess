@@ -3,26 +3,34 @@ package ui.utilities.validators;
 import ui.base.FormField;
 import ui.utilities.FieldValidator;
 
-public class NumericValueValidator extends FieldValidator{
-    private final int minValue;
-    private final int maxValue;
+public class NumericValueValidator extends FieldValidator {
+    private final double minValue;
+    private final double maxValue;
 
     public NumericValueValidator(FormField field, int minValue, int maxValue) {
+        this(field, (double) minValue, (double) maxValue);
+    }
+
+    public NumericValueValidator(FormField field, double minValue, double maxValue) {
         super(field);
         this.minValue = minValue;
         this.maxValue = maxValue;
     }
 
-    public NumericValueValidator(FormField field, int minValue) {
+    public NumericValueValidator(FormField field, double minValue) {
         super(field);
         this.minValue = minValue;
-        this.maxValue = Integer.MIN_VALUE;
+        this.maxValue = Double.MIN_VALUE;
+    }
+
+    public NumericValueValidator(FormField field, int minValue) {
+        this(field, (double) minValue);
     }
 
     @Override
     public boolean validatorFunction() {
         try {
-            int value = Integer.parseInt(field.getValue());
+            double value = Double.parseDouble(field.getValue());
             if (value < minValue) {
                 return false;
             }
@@ -33,12 +41,12 @@ public class NumericValueValidator extends FieldValidator{
         } catch (NumberFormatException e) {
             return false;
         }
-        
+
     }
 
     @Override
     public String getErrorMessage() {
         throw new UnsupportedOperationException("Unimplemented method 'getErrorMessage'");
     }
-    
+
 }

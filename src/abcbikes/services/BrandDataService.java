@@ -19,7 +19,7 @@ public class BrandDataService extends DataService<Brand> {
         try {
             return new Brand(objStrings[0], objStrings[1], objStrings[2]);
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidFormatException("Invalid input");
+            throw new InvalidFormatException("Invalid input format.");
         }
     }
 

@@ -17,12 +17,13 @@ public class FormField {
     private boolean isSelecting = false;
     private final List<FieldValidator> validators = new ArrayList<>();
 
-    public FormField(String label, String value) {
+    public FormField(String label, String value, FieldValidator... validators) {
         this.label = label;
         this.value = value;
+        this.setValidators(validators);
     }
 
-    private void setValidators(FieldValidator... validators) {
+    public void setValidators(FieldValidator... validators) {
         this.validators.addAll(Arrays.asList(validators));
     }
 
@@ -54,6 +55,14 @@ public class FormField {
         return this.isSelecting;
     }
 
+    public boolean isValid() {
+        for (FieldValidator fv : validators) {
+            if (!fv.validatorFunction())
+                return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         try {
@@ -63,6 +72,11 @@ public class FormField {
             result.append(Colorizer.colorize(this.label, labelColor, labelBackground));
             result.append(
                     StringUtils.renderValueString(this));
+            for (FieldValidator validator : validators) {
+                if (!validator.validatorFunction()) {
+                    result.append('\n' + Colorizer.colorize(validator.getErrorMessage(), "red"));
+                }
+            }
             return result.toString();
         } catch (InvalidColorException e) {
             return "Bro you messed up the colors";
