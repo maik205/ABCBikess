@@ -1,6 +1,6 @@
 package ui.utilities.validators;
 
-import ui.base.FormField;
+import ui.components.forms.FormField;
 import ui.utilities.FieldValidator;
 
 public class FieldLengthValidator extends FieldValidator {

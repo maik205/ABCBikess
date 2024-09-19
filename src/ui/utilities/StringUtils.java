@@ -3,7 +3,7 @@ package ui.utilities;
 import java.util.ArrayList;
 import java.util.List;
 
-import ui.base.FormField;
+import ui.components.forms.FormField;
 import ui.exceptions.InvalidColorException;
 import utils.Utils;
 import utils.constants.StringConstants;
@@ -39,7 +39,7 @@ public class StringUtils {
         StringBuilder workingString = new StringBuilder(str);
         while (true) {
             if (workingString.length() > StringConstants.FORM_FIELD_MAX_LENGTH) {
-                splitStrings.add(workingString.substring(0, 50));
+                splitStrings.add(workingString.substring(0, StringConstants.FORM_FIELD_MAX_LENGTH));
                 workingString.delete(0, StringConstants.FORM_FIELD_MAX_LENGTH);
             } else {
                 splitStrings.add(workingString.toString());

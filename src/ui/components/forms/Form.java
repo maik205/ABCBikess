@@ -1,8 +1,10 @@
-package ui.base;
+package ui.components.forms;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import abcbikes.exceptions.InvalidFormatException;
+import abcbikes.interfaces.Queriable;
 import ui.InputBuffer;
 import ui.Router;
 import ui.exceptions.InvalidColorException;
@@ -11,9 +13,9 @@ import ui.utilities.Colorizer;
 
 import utils.RouteDescriptor;
 
-public abstract class Form extends Route {
+public abstract class Form<T extends Queriable> extends Route {
     protected final List<FormField> fields = new ArrayList<>();
-    private boolean isEditing = false;
+    protected boolean isEditing = false;
     protected Route prevRoute;
     private int currentSelectedFieldIndex = 0;
     private String acceptMessage = "Submit";
@@ -104,6 +106,10 @@ public abstract class Form extends Route {
         return true;
     }
 
+    public abstract void submitForm();
+
+    public abstract T parseForm() throws InvalidFormatException;
+
     /**
      * Initialize and create the form fields
      */
@@ -114,7 +120,6 @@ public abstract class Form extends Route {
      * 
      * @return the data from the form
      */
-    public abstract void submitForm();
 
     public abstract void cancelForm();
 }

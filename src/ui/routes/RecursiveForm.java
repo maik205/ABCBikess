@@ -1,7 +1,9 @@
 package ui.routes;
 
+import abcbikes.exceptions.InvalidFormatException;
+import abcbikes.interfaces.Queriable;
 import ui.Router;
-import ui.base.Form;
+import ui.components.forms.Form;
 import utils.RouteDescriptor;
 
 public class RecursiveForm extends Form {
@@ -30,6 +32,11 @@ public class RecursiveForm extends Form {
     @Override
     public String renderRouteContent() {
         return this.renderForm();
+    }
+
+    @Override
+    public Queriable parseForm() throws InvalidFormatException {
+        return null;
     }
 
 }

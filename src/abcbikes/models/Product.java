@@ -6,11 +6,12 @@
 package abcbikes.models;
 
 import abcbikes.interfaces.Queriable;
+import abcbikes.services.DataServiceProvider;
 
 /**
  * @author ASUS
  */
-public class Product implements Queriable{
+public class Product implements Queriable {
     private String productId;
     private String name;
     private String brandId;
@@ -77,7 +78,34 @@ public class Product implements Queriable{
 
     @Override
     public String toString() {
-        return "";
+        return String.format(
+                "ID: %s, Name: %s, BrandID: %s, CategoryID: %s, Model Year: %s, Price: %s",
+                this.getId(),
+                this.name,
+                this.brandId,
+                this.categoryId,
+                this.modelYear,
+                this.listPrice);
+    }
+
+    public String toFileString() {
+        return String.format("%s, %s, %s, %s, %s, %s",
+                this.getId(),
+                this.getName(),
+                this.getBrandId(),
+                this.getCategoryId(),
+                this.getModelYear(),
+                this.getListPrice());
+    }
+
+    public String toLinkedString() {
+        return String.format("%s, %s, %s, %s, %s, %s",
+                this.getId(),
+                this.getName(),
+                DataServiceProvider.brandDataService.get(this.getBrandId()).getBrandName(),
+                DataServiceProvider.categoryDataService.get(this.getCategoryId()).getCategoryName(),
+                this.getModelYear(),
+                this.getListPrice());
     }
 
     @Override
@@ -96,7 +124,5 @@ public class Product implements Queriable{
     public String getId() {
         return this.productId;
     }
-
-
 
 }

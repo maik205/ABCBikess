@@ -27,11 +27,6 @@ public abstract class DataService<T extends Queriable> extends HashMap<String, T
 
     }
 
-    public HashMap<String, T> updateCollectionItem(T oldValue, T newValue) {
-        this.put(oldValue.getId(), newValue);
-        return this;
-    }
-
     public void addItem(T item) throws InvalidItemException, InvalidLinkException {
         if (this.get(item.getId()) != null)
             throw new DuplicateItemException();
@@ -56,13 +51,7 @@ public abstract class DataService<T extends Queriable> extends HashMap<String, T
     public void loadFromFile(String path) throws InvalidFormatException, InvalidItemException, IOException {
         String[][] items = getItemStrings(path, getNumFields());
         for (String[] item : items) {
-            try {
-                this.addItem(parse(item));
-            } catch (InvalidItemException e) {
-                throw e;
-            } catch (InvalidFormatException e) {
-                throw e;
-            }
+            this.addItem(parse(item));
         }
     }
 

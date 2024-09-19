@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import abcbikes.interfaces.Queriable;
 import abcbikes.services.DataService;
-import ui.base.FormField;
+import ui.components.forms.FormField;
 
 public class FieldSuggestor<T extends Queriable> {
     private DataService<T> dataService;

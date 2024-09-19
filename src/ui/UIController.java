@@ -16,13 +16,15 @@ public class UIController {
         }
     }
 
+    /**
+     * Starts the UI loop and listens for keyboard input.
+     */
     public void start() {
         router.navigate(new MainMenu(router));
         cycle();
         while (true) {
             if (kbHit()) {
                 char c = getChar();
-
                 input.addBuffer(c);
                 input.set(c);
                 cycle();
@@ -30,6 +32,9 @@ public class UIController {
         }
     }
 
+    /**
+     * Clears the console and rerenders the current route.
+     */
     private void cycle() {
         Utils.clearConsole();
         System.out.println(this.router.renderRoute());

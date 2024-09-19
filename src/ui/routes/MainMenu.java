@@ -40,16 +40,16 @@ public class MainMenu extends Route {
                     router.navigate(new Search(router, this));
                     break;
                 case 2:
-                    System.out.println("Update a product");
+                    router.navigate(new ProductDeleteQuery(router, this));
                     break;
                 case 3:
-                    System.out.println("Delete a product");
+                    router.navigate(new UpdateQuery(router, this));
                     break;
                 case 4:
-                    System.out.println("Save to file");
+                    router.navigate(new SaveProductToFile(router, this));
                     break;
                 case 5:
-                    System.out.println("Load product list from file");
+                    router.navigate(new LoadProductList(router, this));
                     break;
             }
         }

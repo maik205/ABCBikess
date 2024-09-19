@@ -17,5 +17,6 @@ public final class Constants {
     public static final String CATEGORY_FILE_NAME = "Category.txt";
     public static final String SPLIT_TOKEN = ",";
     public static final String NEWLINE_TOKEN = "\n";
+    public static final int PAGE_SIZE = 5;
 
 }

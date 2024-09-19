@@ -1,6 +1,6 @@
 package ui.utilities.validators;
 
-import ui.base.FormField;
+import ui.components.forms.FormField;
 import ui.utilities.FieldValidator;
 
 public class NumericValidator extends FieldValidator {
@@ -17,6 +17,8 @@ public class NumericValidator extends FieldValidator {
 
     @Override
     public boolean validatorFunction() {
+        if (field.getValue().isEmpty())
+            return true;
         try {
             if (model instanceof Integer || model instanceof Long) {
                 Long.parseLong(field.getValue());

@@ -1,4 +1,4 @@
-package ui.base;
+package ui.components.forms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +8,6 @@ import ui.exceptions.InvalidColorException;
 import ui.utilities.Colorizer;
 import ui.utilities.FieldValidator;
 import ui.utilities.StringUtils;
-import utils.Utils;
 
 public class FormField {
     private String label;
@@ -56,6 +55,8 @@ public class FormField {
     }
 
     public boolean isValid() {
+        if (this.value.isEmpty())
+            return false;
         for (FieldValidator fv : validators) {
             if (!fv.validatorFunction())
                 return false;

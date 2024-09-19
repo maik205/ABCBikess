@@ -20,12 +20,12 @@ public final class DataServiceProvider {
             brandDataService.loadFromFile();
             productDataService.loadFromFile();
         } catch (InvalidFormatException e) {
-            Router.setMotd("Invalid data found, please input a new file. " + e.getMessage() + "\n");
+            Router.setMotd("Invalid data found, please input a new file. " + e.getMessage());
         } catch (InvalidItemException e) {
             e.printStackTrace();
-            Router.setMotd("Invalid item found in collection, please input a new file.\n" + e.getMessage() + "\n");
+            Router.setMotd("Invalid item found in collection, please input a new file." + e.getMessage());
         } catch (IOException e) {
-            Router.setMotd("Can not read data from disk." + e.getMessage() + "\n");
+            Router.setMotd("Can not read data from disk for file: " + e.getMessage());
 
         }
     }

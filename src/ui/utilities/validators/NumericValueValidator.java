@@ -1,6 +1,6 @@
 package ui.utilities.validators;
 
-import ui.base.FormField;
+import ui.components.forms.FormField;
 import ui.utilities.FieldValidator;
 
 public class NumericValueValidator extends FieldValidator {
@@ -29,12 +29,14 @@ public class NumericValueValidator extends FieldValidator {
 
     @Override
     public boolean validatorFunction() {
+        if (field.getValue().isEmpty())
+            return true;
         try {
             double value = Double.parseDouble(field.getValue());
             if (value < minValue) {
                 return false;
             }
-            if (maxValue != 0 && value > maxValue) {
+            if (maxValue != Double.MIN_VALUE && value > maxValue) {
                 return false;
             }
             return true;
@@ -46,7 +48,10 @@ public class NumericValueValidator extends FieldValidator {
 
     @Override
     public String getErrorMessage() {
-        throw new UnsupportedOperationException("Unimplemented method 'getErrorMessage'");
+        if (this.maxValue == Double.MIN_VALUE) {
+            return String.format("The value must be above %.0f", this.minValue);
+        }
+        return String.format("Value must be between %.0f and %.0f", this.minValue, this.maxValue);
     }
 
 }

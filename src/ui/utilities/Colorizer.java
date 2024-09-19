@@ -4,6 +4,9 @@ import ui.exceptions.InvalidColorException;
 
 import java.util.HashMap;
 
+/**
+ * Utility class for colorizing text with ANSI color codes
+ */
 public class Colorizer {
     private final static HashMap<String, String> colorMap = new HashMap<>();
     private final static HashMap<String, String> backgroundMap = new HashMap<>();
@@ -30,15 +33,36 @@ public class Colorizer {
         backgroundMap.put("white", ColorConstants.ANSI_WHITE_BACKGROUND);
     }
 
+    /**
+     * Colorize text with a text color
+     * 
+     * @param text  Text to colorize
+     * @param color Text color (possible values: black, red, green, yellow, blue,
+     *              purple, cyan, white)
+     * @return Colorized text with ANSI color codes
+     * @throws InvalidColorException If the color is invalid
+     */
     public static String colorize(String text, String color) throws InvalidColorException {
         if (colorMap.containsKey(color)) {
             return colorMap.get(color) + text + ColorConstants.ANSI_RESET;
-        } else throw new InvalidColorException();
+        } else
+            throw new InvalidColorException();
     }
 
+    /**
+     * Colorize text with a background color
+     * 
+     * @param text       Text to colorize
+     * @param color      Text color (possible values: black, red, green, yellow,
+     *                   blue, purple, cyan, white)
+     * @param background Background color
+     * @return Colorized text with ANSI color codes
+     * @throws InvalidColorException If the color or background is invalid
+     */
     public static String colorize(String text, String color, String background) throws InvalidColorException {
         if (backgroundMap.containsKey(background)) {
             return backgroundMap.get(background) + colorize(text, color);
-        } else throw new InvalidColorException();
+        } else
+            throw new InvalidColorException();
     }
 }

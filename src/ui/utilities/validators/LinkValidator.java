@@ -2,7 +2,7 @@ package ui.utilities.validators;
 
 import abcbikes.interfaces.Queriable;
 import abcbikes.services.DataService;
-import ui.base.FormField;
+import ui.components.forms.FormField;
 import ui.utilities.FieldValidator;
 
 public class LinkValidator<T extends Queriable> extends FieldValidator {
